@@ -15,7 +15,6 @@ public class Main {
     } else {
       System.out.printf("Год %d не является високосным \n", year);
     }
-
     //Task №2:
     System.out.println("Task №2");
     Scanner scan = new Scanner(System.in);
@@ -24,7 +23,6 @@ public class Main {
     System.out.println("Введите год выпуска Вашего устройства в формате: 2021");
     int clientDeviceYear = scan.nextInt();
     checkDevice(clientOS, clientDeviceYear);
-
     //Task №3:
     System.out.println("Task №3");
     int deliveryDistance = 55;
