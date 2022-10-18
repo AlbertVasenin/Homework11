@@ -3,6 +3,7 @@ package sky.pro.java;
 import java.io.PrintStream;
 import java.time.LocalDate;
 import java.util.Scanner;
+import java.util.Random;
 
 public class Main {
 
@@ -28,6 +29,12 @@ public class Main {
     int deliveryDistance = 55;
     int oneDay = 1;
     numberOfDeliveryDays(deliveryDistance, oneDay);
+    System.out.println();
+    //Task №4 (дополнительная задача):
+    int[] salary = generateRandom();
+    sum(salary);
+    average(salary);
+    System.out.printf("Средняя трата за месяц равна %.2f рублей ", average(salary));
   }
 
   //Task №1
@@ -57,5 +64,31 @@ public class Main {
       oneDay++;
     }
     return System.out.printf("Потребуется %d дней доставки ", oneDay);
+  }
+
+  //Task №4
+  public static int[] generateRandom() {
+    Random random = new Random();
+    int[] arr = new int[30];
+    for (int i = 0; i < arr.length; i++) {
+      arr[i] = random.nextInt(100_000) + 100_000;
+    }
+    return arr;
+  }
+
+  public static int sum(int[] salary) {
+    int result = 0;
+    for (int i = 0; i < salary.length; i++) {
+      result += salary[i];
+    }
+    return result;
+  }
+
+  public static double average(int[] salary) {
+    double result = 0;
+    for (int i = 0; i < salary.length; i++) {
+      result = sum(salary) / salary.length;
+    }
+    return result;
   }
 }
