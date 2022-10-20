@@ -1,6 +1,5 @@
 package sky.pro.java;
 
-import java.io.PrintStream;
 import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.Random;
@@ -10,7 +9,7 @@ public class Main {
   private static int clientOS;
   private static int clientDeviceYear;
 
-  private static int day;
+  private static int day = 1;
 
   public static void main(String[] args) {
     //Task №1:
@@ -71,17 +70,15 @@ public class Main {
 
   //Task №3
   public static void numberOfDeliveryDays() {
-    int deliveryDistance = 120;
-    if (deliveryDistance > 20) {
+    int deliveryDistance = 65;
+    if (deliveryDistance < 20) {
+      System.out.println("Потребуется дней доставки " + day);
+    } else if (deliveryDistance >= 20 && deliveryDistance < 60) {
       day++;
+      System.out.println("Потребуется дней доставки " + day);
+    } else if (deliveryDistance >= 60) {
+      System.out.println("Так далеко не возим");
     }
-    if (deliveryDistance > 60) {
-      day++;
-    }
-    if (deliveryDistance > 80) {
-      System.out.println("Так далеко не возим, извините");
-    }
-    System.out.printf("Потребуется %d дней доставки ", day);
   }
 
   //Task №4
