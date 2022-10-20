@@ -77,7 +77,7 @@ public class Main {
       day++;
       System.out.println("Потребуется дней доставки " + day);
     } else if (deliveryDistance >= 60) {
-      System.out.println("Так далеко не возим");
+      System.out.println("Так далеко не возим, извините");
     }
   }
 
