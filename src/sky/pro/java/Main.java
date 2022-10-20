@@ -7,6 +7,11 @@ import java.util.Random;
 
 public class Main {
 
+  private static int clientOS;
+  private static int clientDeviceYear;
+
+  private static int day;
+
   public static void main(String[] args) {
     //Task №1:
     System.out.println("Task №1");
@@ -18,17 +23,11 @@ public class Main {
     }
     //Task №2:
     System.out.println("Task №2");
-    Scanner scan = new Scanner(System.in);
-    System.out.println("Нажмите 0, если у Вас iOS\nНажмите 1, если у Вас Android");
-    int clientOS = scan.nextInt();
-    System.out.println("Введите год выпуска Вашего устройства в формате: 2021");
-    int clientDeviceYear = scan.nextInt();
-    checkDevice(clientOS, clientDeviceYear);
+    inputData();
+    checkDevice();
     //Task №3:
     System.out.println("Task №3");
-    int deliveryDistance = 55;
-    int oneDay = 1;
-    numberOfDeliveryDays(deliveryDistance, oneDay);
+    numberOfDeliveryDays();
     System.out.println();
     //Task №4 (дополнительная задача):
     int[] salary = generateRandom();
@@ -42,28 +41,47 @@ public class Main {
     return (year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0);
   }
 
+  public static void inputData() {
+    Scanner scan = new Scanner(System.in);
+    System.out.println("Нажмите 0, если у Вас iOS\nНажмите 1, если у Вас Android");
+    clientOS = scan.nextInt();
+    if (clientOS > 1 || clientOS < 0) {
+      System.out.println("Ваше устройство не поддерживается");
+    } else {
+      System.out.println("Введите год выпуска Вашего устройства в формате: 2021");
+      clientDeviceYear = scan.nextInt();
+      if (clientDeviceYear > LocalDate.now().getYear() || clientDeviceYear < 1000) {
+        System.out.println("Кто вы?");
+      }
+    }
+  }
+
   //Task №2
-  public static void checkDevice(int clientOS, int clientDeviceYear) {
+  public static void checkDevice() {
     if (clientOS == 0 && clientDeviceYear < LocalDate.now().getYear()) {
       System.out.println("Установите облегченную версию приложения для iOS по ссылке");
-    } else if (clientOS == 0 && clientDeviceYear >= LocalDate.now().getYear()) {
+    } else if (clientOS == 0 && clientDeviceYear == LocalDate.now().getYear()) {
       System.out.println("Установите версию приложения для iOS по ссылке");
     } else if (clientOS == 1 && clientDeviceYear < LocalDate.now().getYear()) {
       System.out.println("Установите облегченную версию приложения для Android по ссылке");
-    } else {
+    } else if (clientOS == 1 && clientDeviceYear == LocalDate.now().getYear()) {
       System.out.println("Установите версию приложения для Android по ссылке");
     }
   }
 
   //Task №3
-  public static PrintStream numberOfDeliveryDays(int deliveryDistance, int oneDay) {
+  public static void numberOfDeliveryDays() {
+    int deliveryDistance = 120;
     if (deliveryDistance > 20) {
-      oneDay++;
+      day++;
     }
     if (deliveryDistance > 60) {
-      oneDay++;
+      day++;
     }
-    return System.out.printf("Потребуется %d дней доставки ", oneDay);
+    if (deliveryDistance > 80) {
+      System.out.println("Так далеко не возим, извините");
+    }
+    System.out.printf("Потребуется %d дней доставки ", day);
   }
 
   //Task №4
@@ -85,10 +103,7 @@ public class Main {
   }
 
   public static double average(int[] salary) {
-    double result = 0;
-    for (int i = 0; i < salary.length; i++) {
-      result = sum(salary) / salary.length;
-    }
+    double result = sum(salary) / salary.length;
     return result;
   }
 }
