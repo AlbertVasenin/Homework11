@@ -1,5 +1,6 @@
 package sky.pro.java;
 
+import java.io.PrintStream;
 import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.Random;
@@ -8,31 +9,29 @@ public class Main {
 
   private static int clientOS;
   private static int clientDeviceYear;
-
   private static int day = 1;
 
   public static void main(String[] args) {
     //Task №1:
     System.out.println("Task №1");
-    int year = 2028;
-    if (checkYear(year)) {
-      System.out.printf("Год %d является високосным \n", year);
-    } else {
-      System.out.printf("Год %d не является високосным \n", year);
-    }
+    int year = 2024;
+    trueOrFalse(year);
+    System.out.println("==========================");
     //Task №2:
     System.out.println("Task №2");
     inputData();
     checkDevice();
+    System.out.println("==========================");
     //Task №3:
     System.out.println("Task №3");
     numberOfDeliveryDays();
-    System.out.println();
+    System.out.println("==========================");
     //Task №4 (дополнительная задача):
     int[] salary = generateRandom();
     sum(salary);
     average(salary);
-    System.out.printf("Средняя трата за месяц равна %.2f рублей ", average(salary));
+    System.out.printf("Средняя трата за месяц равна %.2f рублей \n", average(salary));
+    System.out.println("==========================");
   }
 
   //Task №1
@@ -40,6 +39,16 @@ public class Main {
     return (year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0);
   }
 
+  public static PrintStream trueOrFalse(int year) {
+    if (checkYear(year) == true) {
+      System.out.printf("Год %d является високосным \n", year);
+    } else {
+      return System.out.printf("Год %d не является високосным \n", year);
+    }
+    return null;
+  }
+
+  //Task №2
   public static void inputData() {
     Scanner scan = new Scanner(System.in);
     System.out.println("Нажмите 0, если у Вас iOS\nНажмите 1, если у Вас Android");
@@ -55,7 +64,6 @@ public class Main {
     }
   }
 
-  //Task №2
   public static void checkDevice() {
     if (clientOS == 0 && clientDeviceYear < LocalDate.now().getYear()) {
       System.out.println("Установите облегченную версию приложения для iOS по ссылке");
@@ -70,7 +78,7 @@ public class Main {
 
   //Task №3
   public static void numberOfDeliveryDays() {
-    int deliveryDistance = 65;
+    int deliveryDistance = 50;
     if (deliveryDistance < 20) {
       System.out.println("Потребуется дней доставки " + day);
     } else if (deliveryDistance >= 20 && deliveryDistance < 60) {
