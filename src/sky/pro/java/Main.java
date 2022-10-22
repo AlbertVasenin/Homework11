@@ -40,7 +40,7 @@ public class Main {
   }
 
   public static PrintStream trueOrFalse(int year) {
-    if (checkYear(year) == true) {
+    if (checkYear(year)) {
       System.out.printf("Год %d является високосным \n", year);
     } else {
       return System.out.printf("Год %d не является високосным \n", year);
@@ -58,18 +58,19 @@ public class Main {
     } else {
       System.out.println("Введите год выпуска Вашего устройства в формате: 2021");
       clientDeviceYear = scan.nextInt();
-      if (clientDeviceYear > LocalDate.now().getYear() || clientDeviceYear < 1000) {
-        System.out.println("Кто вы?");
+      if (clientDeviceYear > LocalDate.now().getYear() || clientDeviceYear < 2007) {
+        System.out.println("Мне кажется, таких телефонов еще не было!");
       }
     }
   }
 
   public static void checkDevice() {
-    if (clientOS == 0 && clientDeviceYear < LocalDate.now().getYear()) {
+    if (clientOS == 0 && clientDeviceYear < LocalDate.now().getYear() && clientDeviceYear > 2006) {
       System.out.println("Установите облегченную версию приложения для iOS по ссылке");
     } else if (clientOS == 0 && clientDeviceYear == LocalDate.now().getYear()) {
       System.out.println("Установите версию приложения для iOS по ссылке");
-    } else if (clientOS == 1 && clientDeviceYear < LocalDate.now().getYear()) {
+    } else if (clientOS == 1 && clientDeviceYear < LocalDate.now().getYear()
+        && clientDeviceYear > 2006) {
       System.out.println("Установите облегченную версию приложения для Android по ссылке");
     } else if (clientOS == 1 && clientDeviceYear == LocalDate.now().getYear()) {
       System.out.println("Установите версию приложения для Android по ссылке");
